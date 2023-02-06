@@ -54,14 +54,14 @@ function Text({ element }: Props) {
     } else if (e.key === "ArrowDown") {
       // selecting a lower element type
       const shownChoicesLength = Object.values(FormElementType).filter((fet) =>
-        fet.includes(element.content)
+        fet.includes(element.content.substring(1))
       ).length;
       if (elementTypeIndex + 1 < shownChoicesLength)
         setElementTypeIndex(elementTypeIndex + 1);
     } else if (e.key === "Enter") {
       // change element type with selected
       const selectedElementType = Object.values(FormElementType).filter((fet) =>
-        fet.includes(element.content)
+        fet.includes(element.content.substring(1))
       )[elementTypeIndex];
       changeElementType(selectedElementType);
     }
