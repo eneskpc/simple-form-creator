@@ -92,6 +92,7 @@ function Text({ element }: Props) {
         <div className="absolute top-full z-10 w-full shadow-md rounded-md">
           {Object.values(FormElementType)
             .filter((fet) => {
+              console.log(element.content);
               return fet.includes(element.content.substring(1));
             })
             .map((fet, index) => {

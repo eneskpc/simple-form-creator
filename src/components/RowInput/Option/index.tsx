@@ -6,7 +6,8 @@ import {
 } from "react-sortable-hoc";
 import {
   addOptionToElement,
-  removeElement, sortOption,
+  removeElement,
+  sortOption,
   updateElementInForm,
   updateOptionToElement
 } from "../../../features/form/formSlice";
@@ -29,7 +30,7 @@ type ISortableList = {
 
 type ISortableElement = {
   value: IFormElementOption;
-  index: number;
+  elementIndex: number;
   size: number;
   addOption: () => void;
   updateOption: (option: IFormElementOption) => void;
@@ -55,6 +56,7 @@ const SortableList = SortableContainer<ISortableList>(
           <SortableItem
             key={value.id}
             index={index}
+            elementIndex={index}
             value={value}
             addOption={addOption}
             updateOption={updateOption}
@@ -69,13 +71,13 @@ const SortableList = SortableContainer<ISortableList>(
 const SortableItem = SortableElement<ISortableElement>(
   ({
     value,
-    index,
+    elementIndex,
     size,
     addOption,
     updateOption,
   }: {
     value: IFormElement;
-    index: number;
+    elementIndex: number;
     size: number;
     addOption: () => void;
     updateOption: (option: IFormElementOption) => void;
@@ -89,7 +91,7 @@ const SortableItem = SortableElement<ISortableElement>(
         >
           <div className="flex flex-shrink-0 justify-center items-center w-5 h-5 rounded-md bg-gray-500 ">
             <strong className="text-white text-xs">
-              {Letters()[index % Letters().length]}
+              {Letters()[elementIndex % Letters().length]}
             </strong>
           </div>
           <input

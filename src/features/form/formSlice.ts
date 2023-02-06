@@ -124,13 +124,13 @@ const formSlice = createSlice({
       if (elementIndex === -1) {
         return;
       }
-
-      state.forms[formIndex].elements[elementIndex] = action.payload;
       if (
-        state.forms[formIndex].elements[elementIndex].content.startsWith("/")
+        state.forms[formIndex].elements[elementIndex].content.startsWith("/") &&
+        state.forms[formIndex].elements[elementIndex].type !== action.payload.type
       ) {
-        state.forms[formIndex].elements[elementIndex].content = "";
+        action.payload.content = "";
       }
+      state.forms[formIndex].elements[elementIndex] = action.payload;
       if (
         action.payload.type === FormElementType.OPTION &&
         (state.forms[formIndex].elements[elementIndex].options?.length || 0) ===
